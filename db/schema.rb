@@ -10,12 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_29_204412) do
+ActiveRecord::Schema.define(version: 2020_01_29_213224) do
 
   create_table "answers", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "question_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "game_questions", force: :cascade do |t|
+    t.integer "game_id"
+    t.integer "question_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["game_id"], name: "index_game_questions_on_game_id"
+    t.index ["question_id"], name: "index_game_questions_on_question_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -32,4 +43,7 @@ ActiveRecord::Schema.define(version: 2020_01_29_204412) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "answers", "questions"
+  add_foreign_key "game_questions", "games"
+  add_foreign_key "game_questions", "questions"
 end

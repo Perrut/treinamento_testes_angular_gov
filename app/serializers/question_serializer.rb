@@ -1,3 +1,3 @@
 class QuestionSerializer < ActiveModel::Serializer
-  attributes :id, :question, :level
+  attributes :id, :_question, :_level
 end

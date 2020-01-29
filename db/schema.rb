@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_01_29_213224) do
 
   create_table "answers", force: :cascade do |t|
-    t.string "content"
+    t.string "_content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "question_id"
@@ -21,8 +21,8 @@ ActiveRecord::Schema.define(version: 2020_01_29_213224) do
   end
 
   create_table "game_questions", force: :cascade do |t|
-    t.integer "game_id"
-    t.integer "question_id"
+    t.integer "game_id", null: false
+    t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["game_id"], name: "index_game_questions_on_game_id"
@@ -30,15 +30,15 @@ ActiveRecord::Schema.define(version: 2020_01_29_213224) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.string "player_name"
-    t.string "score"
+    t.string "_player_name"
+    t.integer "_score", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "question"
-    t.string "level"
+    t.string "_question"
+    t.integer "_level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

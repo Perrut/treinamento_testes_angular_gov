@@ -25,7 +25,7 @@ class GamesController < ApplicationController
 
       begin
         question = Question.find(rand(start_easy..end_easy))
-        easy_questions.push(question) unless easy_questions.include?(question)
+        easy_questions.push(QuestionSerializer.new(question)) unless easy_questions.include?(question)
       end while easy_questions.size < 6
       
       

@@ -7,18 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Question.destroy_all
 
-5.times.each do |i|
+200.times.each do |i|
   Question.create(_question: Faker::Quote.famous_last_words, _level: 0)
 end
 
-5.times.each do |i|
+200.times.each do |i|
   Question.create(_question: Faker::Quote.famous_last_words, _level: 1)
 end
 
-5.times.each do |i|
+200.times.each do |i|
   Question.create(_question: Faker::Quote.famous_last_words, _level: 2)
 end
 
-5.times.each do |i|
+40.times.each do |i|
   Question.create(_question: Faker::Quote.famous_last_words, _level: 3)
 end

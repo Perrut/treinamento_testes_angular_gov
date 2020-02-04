@@ -18,7 +18,18 @@ class GamesController < ApplicationController
     @game = Game.new(game_params)
 
     if @game.save
-      render json: @game, status: :created, location: @game
+      easy_questions = []
+      
+      start_easy = Question.where(_level: 0).order(id: :asc).first.id
+      end_easy = Question.where(_level: 0).order(id: :desc).first.id
+
+      begin
+        question = Question.find(rand(start_easy..end_easy))
+        easy_questions.push(question) unless easy_questions.include?(question)
+      end while easy_questions.size < 6
+      
+      
+      render json: {game: @game, questions: easy_questions}, status: :created, location: @game
     else
       render json: @game.errors, status: :unprocessable_entity
     end

@@ -28,8 +28,36 @@ class GamesController < ApplicationController
         easy_questions.push(QuestionSerializer.new(question)) unless easy_questions.include?(question)
       end while easy_questions.size < 6
       
+      medium_questions = []
       
-      render json: {game: @game, questions: easy_questions}, status: :created, location: @game
+      start_medium = Question.where(_level: 1).order(id: :asc).first.id
+      end_medium = Question.where(_level: 1).order(id: :desc).first.id
+
+      begin
+        question = Question.find(rand(start_medium..end_medium))
+        medium_questions.push(QuestionSerializer.new(question)) unless medium_questions.include?(question)
+      end while medium_questions.size < 6
+      
+      hard_questions = []
+      
+      start_hard = Question.where(_level: 2).order(id: :asc).first.id
+      end_hard = Question.where(_level: 2).order(id: :desc).first.id
+
+      begin
+        question = Question.find(rand(start_hard..end_hard))
+        hard_questions.push(QuestionSerializer.new(question)) unless hard_questions.include?(question)
+      end while hard_questions.size < 6
+      
+      questions = easy_questions + medium_questions + hard_questions
+      
+      start_very_hard = Question.where(_level: 3).order(id: :asc).first.id
+      end_very_hard = Question.where(_level: 3).order(id: :desc).first.id
+      
+      question = Question.find(rand(start_very_hard..end_very_hard))
+      
+      questions << question
+      
+      render json: {game: @game, questions: questions}, status: :created, location: @game
     else
       render json: @game.errors, status: :unprocessable_entity
     end

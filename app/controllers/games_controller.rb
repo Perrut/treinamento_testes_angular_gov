@@ -55,7 +55,7 @@ class GamesController < ApplicationController
       
       question = Question.find(rand(start_very_hard..end_very_hard))
       
-      questions << question
+      questions << QuestionSerializer.new(question)
       
       render json: {game: @game, questions: questions}, status: :created, location: @game
     else

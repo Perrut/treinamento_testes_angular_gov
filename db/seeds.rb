@@ -7,18 +7,24 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 Question.destroy_all
 
-200.times.each do |i|
-  Question.create(_question: Faker::Quote.famous_last_words, _level: 0)
+3.times do |level|
+  200.times do |i|
+    q = Question.create(_question: Faker::Quote.famous_last_words, _level: level)
+    a = []
+    4.times do |j|
+       a << Answer.create(_content: Faker::TvShows::GameOfThrones.quote, question: q)
+    end
+    q.correct_answer = a.sample
+    q.save
+  end
 end
 
-200.times.each do |i|
-  Question.create(_question: Faker::Quote.famous_last_words, _level: 1)
-end
-
-200.times.each do |i|
-  Question.create(_question: Faker::Quote.famous_last_words, _level: 2)
-end
-
-40.times.each do |i|
-  Question.create(_question: Faker::Quote.famous_last_words, _level: 3)
+40.times do |i|
+  q = Question.create(_question: Faker::Quote.famous_last_words, _level: 3)
+  a = []
+  4.times do |j|
+     a << Answer.create(_content: Faker::TvShows::GameOfThrones.quote, question: q)
+  end
+  q.correct_answer = a.sample
+  q.save
 end

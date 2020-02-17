@@ -24,6 +24,7 @@ class QuestionsController < ApplicationController
     end
   end
   
+  # POST /questions/answer/:id/:answer_id
   def answer_question
     @answer = Answer.find(params[:answer_id])
     

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :answers
-  post 'answers/answer/:id/:answer_id', to: 'answers#answer_question'
+  post 'questions/answer/:id/:answer_id', to: 'questions#answer_question'
   
   resources :questions
   resources :games

@@ -29,9 +29,9 @@ class QuestionsController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     
     if @question.correct_answer == @answer
-      render json: { correct: true }
+      render json: { correct: true, correct_answer_id: @question.correct_answer_id }
     else
-      render json: { correct: false }
+      render json: { correct: false, correct_answer_id: @question.correct_answer_id }
     end
   end
 

@@ -23,6 +23,16 @@ class QuestionsController < ApplicationController
       render json: @question.errors, status: :unprocessable_entity
     end
   end
+  
+  def answer_question
+    @answer = Answer.find(params[:answer_id])
+    
+    if @question.correct_answer == @answer
+      render json: { correct: true }
+    else
+      render json: { correct: false }
+    end
+  end
 
   # PATCH/PUT /questions/1
   def update

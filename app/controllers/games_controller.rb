@@ -26,7 +26,7 @@ class GamesController < ApplicationController
       begin
         question = Question.find(rand(start_easy..end_easy))
         easy_questions.push(QuestionSerializer.new(question)) unless easy_questions.include?(question)
-      end while easy_questions.size < 6
+      end while easy_questions.size < 5
       
       medium_questions = []
       
@@ -36,7 +36,7 @@ class GamesController < ApplicationController
       begin
         question = Question.find(rand(start_medium..end_medium))
         medium_questions.push(QuestionSerializer.new(question)) unless medium_questions.include?(question)
-      end while medium_questions.size < 6
+      end while medium_questions.size < 5
       
       hard_questions = []
       
@@ -46,7 +46,7 @@ class GamesController < ApplicationController
       begin
         question = Question.find(rand(start_hard..end_hard))
         hard_questions.push(QuestionSerializer.new(question)) unless hard_questions.include?(question)
-      end while hard_questions.size < 6
+      end while hard_questions.size < 5
       
       questions = easy_questions + medium_questions + hard_questions
       

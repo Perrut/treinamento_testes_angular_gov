@@ -65,6 +65,11 @@ class GamesController < ApplicationController
 
   # PATCH/PUT /games/1
   def update
+    @game._questions.each do |q|
+      question = Question.find q.id
+      @game._questions << question
+    end
+    
     if @game.update(game_params)
       render json: @game
     else

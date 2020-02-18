@@ -66,7 +66,7 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   def update
     params[:game][:_questions].each do |q|
-      question = Question.find q.id
+      question = Question.find q[:id]
       @game._questions << question
     end
     

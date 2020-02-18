@@ -57,7 +57,7 @@ class GamesController < ApplicationController
       
       questions << QuestionSerializer.new(question)
       
-      render json: {game: @game, questions: questions}, status: :created, location: @game
+      render json: {game: GameSerializer.new(@game), questions: questions}, status: :created, location: @game
     else
       render json: @game.errors, status: :unprocessable_entity
     end

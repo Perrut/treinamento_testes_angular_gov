@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2020_02_14_172946) do
 
   create_table "answers", force: :cascade do |t|
-    t.string "_content"
+    t.string "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "question_id"
@@ -30,15 +30,15 @@ ActiveRecord::Schema.define(version: 2020_02_14_172946) do
   end
 
   create_table "games", force: :cascade do |t|
-    t.string "_player_name"
-    t.integer "_score", default: 0
+    t.string "player_name"
+    t.integer "score", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "questions", force: :cascade do |t|
-    t.string "_question"
-    t.integer "_level"
+    t.string "question"
+    t.integer "level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "correct_answer_id"

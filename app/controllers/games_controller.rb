@@ -20,8 +20,8 @@ class GamesController < ApplicationController
     if @game.save
       easy_questions = []
       
-      start_easy = Question.where(_level: 0).order(id: :asc).first.id
-      end_easy = Question.where(_level: 0).order(id: :desc).first.id
+      start_easy = Question.where(level: 0).order(id: :asc).first.id
+      end_easy = Question.where(level: 0).order(id: :desc).first.id
 
       begin
         question = Question.find(rand(start_easy..end_easy))
@@ -30,8 +30,8 @@ class GamesController < ApplicationController
       
       medium_questions = []
       
-      start_medium = Question.where(_level: 1).order(id: :asc).first.id
-      end_medium = Question.where(_level: 1).order(id: :desc).first.id
+      start_medium = Question.where(level: 1).order(id: :asc).first.id
+      end_medium = Question.where(level: 1).order(id: :desc).first.id
 
       begin
         question = Question.find(rand(start_medium..end_medium))
@@ -40,8 +40,8 @@ class GamesController < ApplicationController
       
       hard_questions = []
       
-      start_hard = Question.where(_level: 2).order(id: :asc).first.id
-      end_hard = Question.where(_level: 2).order(id: :desc).first.id
+      start_hard = Question.where(level: 2).order(id: :asc).first.id
+      end_hard = Question.where(level: 2).order(id: :desc).first.id
 
       begin
         question = Question.find(rand(start_hard..end_hard))
@@ -50,8 +50,8 @@ class GamesController < ApplicationController
       
       questions = easy_questions + medium_questions + hard_questions
       
-      start_very_hard = Question.where(_level: 3).order(id: :asc).first.id
-      end_very_hard = Question.where(_level: 3).order(id: :desc).first.id
+      start_very_hard = Question.where(level: 3).order(id: :asc).first.id
+      end_very_hard = Question.where(level: 3).order(id: :desc).first.id
       
       question = Question.find(rand(start_very_hard..end_very_hard))
       
@@ -65,9 +65,9 @@ class GamesController < ApplicationController
 
   # PATCH/PUT /games/1
   def update
-    params[:game][:_questions].each do |q|
+    params[:game][:questions].each do |q|
       question = Question.find q[:id]
-      @game._questions << question
+      @game.questions << question
     end
     
     if @game.update(game_params)
@@ -90,6 +90,6 @@ class GamesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def game_params
-      params.require(:game).permit(:_player_name, :_score, :_questions)
+      params.require(:game).permit(:player_name, :score, :questions)
     end
 end

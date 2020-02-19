@@ -1,3 +1,3 @@
 class AnswerSerializer < ActiveModel::Serializer
-  attributes :id, :_content
+  attributes :id, :content
 end

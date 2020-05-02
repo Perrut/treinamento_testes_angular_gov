@@ -1,0 +1,34 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/questions":
+    post:
+      summary: Creates a question
+      tags:
+      - Questions
+      parameters: []
+      responses:
+        '201':
+          description: question created
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                question:
+                  type: string
+                level:
+                  type: string
+              required:
+              - question
+              - level
+servers:
+- url: http://{defaultHost}
+  variables:
+    defaultHost:
+      default: localhost:3000

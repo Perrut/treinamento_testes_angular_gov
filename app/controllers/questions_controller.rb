@@ -57,6 +57,24 @@ class QuestionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def question_params
-      params.require(:question).permit(:question, :level)
+      { question: params[:question], level: params[:level], answers: get_questions_from_params }
+    end
+
+    def get_questions_from_params
+      answers = []
+
+      answers_from_request = params[:answers] || []
+
+      if answers_from_request.length > 0
+        answers_from_request.each do |answer|
+          if answer[:id]
+            answers << Answer.find_by(id: answer[:id])
+          else
+            answers << Answer.create(content: answer[:content])
+          end
+        end
+      end
+
+      return answers
     end
 end

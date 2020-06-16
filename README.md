@@ -1,24 +1,9 @@
-# README
+# Perguntas e Respostas - Backend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Para executar esse projeto, basta rodar o comando `docker-compose up`.
 
-Things you may want to cover:
+Na primeira vez que você executar, após o `docker-compose up`, também será necessário abrir um terminal separado e rodar o comando `docker-compose run --rm app bundle exec rails db:migrate db:seed` para realizar a carga inicial da base de dados.
 
-* Ruby version
+Quando executado localmente, o projeto roda na porta `3000`.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Se houver alguma dúvida, entrar em contato pelo email: [matheus.perrut@govbr.com.br](matheus.perrut@govbr.com.br).
